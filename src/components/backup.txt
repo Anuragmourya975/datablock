@@ -1,0 +1,94 @@
+// import React, { useCallback, useState, useMemo } from "react";
+// import ReactFlow, {
+//   MarkerType,
+//   MiniMap,
+//   Controls,
+//   Background,
+//   useNodesState,
+//   useEdgesState,
+//   ReactFlowProvider,
+//   useReactFlow,
+//   addEdge,
+//   Panel,
+// } from "reactflow";
+// import "reactflow/dist/style.css";
+// import Modal from "./Modal";
+// import Videonode from "./Videonode";
+// const proOptions = { hideAttribution: true };
+
+// const initialNodes = [];
+// // const nodeTypes = { textUpdater: Videonode };
+
+// const initialEdges = [];
+
+// let nodeId = 0;
+// function Flow() {
+//   const reactFlowInstance = useReactFlow();
+//   const onClick = useCallback(() => {
+//     const id = `${++nodeId}`;
+//     const newNode = {
+//       id,
+//       position: {
+//         x: 300 + Math.random() * 50,
+//         y: 300 + Math.random() * 50,
+//       },
+//       type: "Videonode",
+
+//       data: {
+//         label: `Node ${id}`,
+//       },
+//     };
+//     reactFlowInstance.addNodes(newNode);
+//   }, []);
+//   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+//   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+//   const [showModal, setShowModal] = useState(false);
+
+//   const onConnect = useCallback(
+//     (params) => setEdges((eds) => addEdge(params, eds)),
+//     [setEdges]
+//   );
+//   const handleClose = () => setShowModal(false);
+
+//   const nodeTypes = useMemo(() => ({ Videonode: Videonode }), []);
+//   return (
+//     <div className="h-screen">
+//       <ReactFlow
+//         proOptions={proOptions}
+//         nodes={nodes}
+//         edges={edges}
+//         onNodesChange={onNodesChange}
+//         onEdgesChange={onEdgesChange}
+//         onConnect={onConnect}
+//         nodeTypes={nodeTypes}
+//         stroke="#222"
+//         strokeWidth={1.5}
+//         minZoom={0.5}
+//       >
+//         <Panel>
+//           <button
+//             className="relative inline-flex items-center justify-center rounded-full mt-5 p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900  group bg-gradient-to-br from-pink-500 to-orange-400 group-hover:from-pink-500 group-hover:to-orange-400 hover:text-white dark:text-white "
+//             onClick={() => setShowModal(true)}
+//           >
+//             <span className="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-full group-hover:bg-opacity-0">
+//               <i className="bi bi-door-open"></i>
+//               &nbsp; Expand
+//             </span>
+//           </button>
+//           <Modal onClose={handleClose} visible={showModal} onClick={onClick} />
+//         </Panel>
+//         <MiniMap
+//           className=" bg-bc"
+//           nodeStrokeWidth={25} // style={{ filter: "invert(1)" }}
+//         />
+//         {/* <Background /> */}
+//         <Controls
+//           className=" bg-bc text-white "
+//           style={{ filter: "invert(1)" }}
+//         />
+//       </ReactFlow>
+//     </div>
+//   );
+// }
+
+// export default Flow;
