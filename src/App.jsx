@@ -1,21 +1,33 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { PuffLoader } from "react-spinners";
+import CircleLoader from "react-spinners/CircleLoader";
+import ClimbingBoxLoader from "react-spinners/ClimbingBoxLoader";
 import { ReactFlowProvider } from "reactflow";
-// import Block from "./components/Block";
-// import Button from "./components/Button";
-// import Console from "./components/Console";
+
 import Flow from "./components/Flow";
-// import Modal from "./components/Modal";
-import Navbar from "./components/Navbar";
 
 function App() {
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
   return (
     <div>
-      {/* <Navbar /> */}
-      <ReactFlowProvider>
-        <Flow />
-      </ReactFlowProvider>
-      {/* <Console /> */}
-      {/* <Block /> */}
+      {loading ? (
+        <div className="flex justify-center items-center m-auto w-screen h-screen">
+          <PuffLoader color="#c9302c" size={100} />
+          {/* <ClimbingBoxLoader color="#c9302c" /> */}
+          {/* <CircleLoader color="#c9302c" size={100} /> */}
+        </div>
+      ) : (
+        <ReactFlowProvider>
+          <Flow />
+        </ReactFlowProvider>
+      )}
     </div>
   );
 }
